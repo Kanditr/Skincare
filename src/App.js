@@ -1,11 +1,11 @@
 import "./App.css";
-import { AuthProvider } from "./auth";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Homepage from "./containers/homepage";
+import Homepage from "./containers/Homepage";
 import Bugs from "./components/Bugs";
 import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
 import BugsList from "./components/BugsList";
+import { AuthProvider } from "./auth";
 
 const store = configureStore();
 

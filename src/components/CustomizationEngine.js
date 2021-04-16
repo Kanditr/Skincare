@@ -60,14 +60,14 @@ export default function CustomizationEngine() {
 
   return (
     <div className={classes.root}>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Paper elevation={2} className={classes.paper}>
-          <Grid container xs={12}>
+          <Grid item xs={12}>
             <Container className={classes.container}>
               <p>test: user interface of customization engine</p>
             </Container>
           </Grid>
-          <Grid container xs={12}>
+          <Grid item xs={12}>
             <Container className={classes.container}>
               <PrettoSlider
                 valueLabelDisplay="auto"

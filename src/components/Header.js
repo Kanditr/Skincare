@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
+import LogInButton from "./LogInButton";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -45,9 +46,7 @@ export default function Header(props) {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <Button variant="outlined" size="small">
-          Sign up
-        </Button>
+        <LogInButton />
       </Toolbar>
     </React.Fragment>
   );

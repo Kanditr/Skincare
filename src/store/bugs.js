@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-// import axios from "axios";
 import { apiCallBegan } from "./api";
 import moment from "moment";
 
@@ -85,8 +84,6 @@ export const addBug = (bug) =>
 
 export const resolveBug = (id) =>
   apiCallBegan({
-    // /bugs
-    // PATCH /bugs/1
     url: url + "/" + id,
     method: "patch",
     data: { resolved: true },
@@ -102,10 +99,6 @@ export const assignBugToUser = (bugId, userId) =>
   });
 
 // Selector
-
-// Memoization
-// bugs => get unresolved bugs from the cache
-
 export const getBugsByUser = (userId) =>
   createSelector(
     (state) => state.entities.bugs,

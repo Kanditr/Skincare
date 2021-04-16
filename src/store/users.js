@@ -6,14 +6,13 @@ const slice = createSlice({
   name: "users",
   initialState: [],
   reducers: {
-    // action => action handler
     userAdded: (users, action) => {
       users.push({
         id: ++lastId,
-        name: action.payload.name
+        name: action.payload.name,
       });
-    }
-  }
+    },
+  },
 });
 
 export const { userAdded } = slice.actions;

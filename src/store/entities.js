@@ -6,5 +6,5 @@ import usersReducer from "./users";
 export default combineReducers({
   bugs: bugsReducer,
   projects: projectsReducer,
-  users: usersReducer
+  users: usersReducer,
 });
