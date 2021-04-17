@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadBugs, getUnresolvedBugs, resolveBug } from "../store/bugs";
+import {
+  loadBugs,
+  getUnresolvedBugs,
+  resolveBug,
+} from "../store/entities/bugs";
 
 const BugsList = () => {
   const dispatch = useDispatch();

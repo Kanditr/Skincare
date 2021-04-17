@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUnresolvedBugs, loadBugs, resolveBug } from "../store/bugs";
+import {
+  getUnresolvedBugs,
+  loadBugs,
+  resolveBug,
+} from "../store/entities/bugs";
 
 class Bugs extends Component {
   componentDidMount() {

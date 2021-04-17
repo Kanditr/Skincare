@@ -1,28 +1,30 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Container, Slider, Paper, Grid } from "@material-ui/core";
+import { Slider, Paper, Grid, Typography, Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(5),
-      //   width: theme.spacing(40),
-      //   height: theme.spacing(40),
-    },
+    // display: "flex",
+    flexGrow: 1,
+    // flexWrap: "wrap",
+    // "& > *": {
+    // margin: theme.spacing(5),
+    //   width: theme.spacing(40),
+    //   height: theme.spacing(40),
+    // },
   },
   paper: {
-    display: "flex",
-    flexWrap: "wrap",
-    "& > *": {
-      //   margin: theme.spacing(5),
-      width: theme.spacing(40),
-      height: theme.spacing(24),
-    },
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    maxWidth: 960,
+    marginTop: theme.spacing(5),
+    margin: "auto",
   },
 
-  container: { margin: theme.spacing(2) },
+  container: {
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 const PrettoSlider = withStyles({
@@ -60,34 +62,37 @@ export default function CustomizationEngine() {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12}>
-        <Paper elevation={2} className={classes.paper}>
-          <Grid item xs={12}>
-            <Container className={classes.container}>
-              <p>test: user interface of customization engine</p>
-            </Container>
-          </Grid>
-          <Grid item xs={12}>
-            <Container className={classes.container}>
+      <Container>
+        <Paper className={classes.paper}>
+          <Container className={classes.container}>
+            <Typography gutterBottom>Customization Engine</Typography>
+          </Container>
+          <Grid container spacing={2} justify="center" alignItems="center">
+            <Grid item xs={4} sm={2}>
+              <Typography>Ingredient 1</Typography>
+            </Grid>
+            <Grid item xs={8} sm={4}>
               <PrettoSlider
                 valueLabelDisplay="auto"
                 aria-label="pretto slider"
                 defaultValue={20}
               />
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} justify="center" alignItems="center">
+            <Grid item xs={4} sm={2}>
+              <Typography>Ingredient 2</Typography>
+            </Grid>
+            <Grid item xs={8} sm={4}>
               <PrettoSlider
                 valueLabelDisplay="auto"
                 aria-label="pretto slider"
-                defaultValue={60}
+                defaultValue={20}
               />
-              <PrettoSlider
-                valueLabelDisplay="auto"
-                aria-label="pretto slider"
-                defaultValue={40}
-              />
-            </Container>
+            </Grid>
           </Grid>
         </Paper>
-      </Grid>
+      </Container>
     </div>
   );
 }
