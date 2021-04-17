@@ -6,8 +6,7 @@ import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
 import BugsList from "./components/BugsList";
 import { AuthProvider } from "./auth";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
-import { rrfProps } from "./store/firebase";
+import FirestoreUI from "./components/FirestoreUI";
 
 const store = configureStore();
 
@@ -15,15 +14,14 @@ function App() {
   return (
     <AuthProvider>
       <Provider store={store}>
-        <ReactReduxFirebaseProvider {...rrfProps}>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={Homepage} />
-              <Route exact path="/1" component={Bugs} />
-              <Route exact path="/2" component={BugsList} />
-            </Switch>
-          </Router>
-        </ReactReduxFirebaseProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route exact path="/1" component={Bugs} />
+            <Route exact path="/2" component={BugsList} />
+            <Route exact path="/3" component={FirestoreUI} />
+          </Switch>
+        </Router>
       </Provider>
     </AuthProvider>
   );

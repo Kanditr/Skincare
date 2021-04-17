@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Slider, Paper, Grid, Typography, Container } from "@material-ui/core";
+import {
+  Slider,
+  Paper,
+  Grid,
+  Typography,
+  Container,
+  Button,
+  Box,
+} from "@material-ui/core";
+import { database, firebaseApp } from "../config";
+import { AuthContext } from "../auth";
+import { auth, provider } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     marginBottom: theme.spacing(2),
+  },
+
+  button: {
+    marginLeft: theme.spacing(2),
   },
 }));
 
@@ -59,6 +74,66 @@ const PrettoSlider = withStyles({
 
 export default function CustomizationEngine() {
   const classes = useStyles();
+  const currentUser = useContext(AuthContext);
+  const activeUser = firebaseApp.auth().currentUser;
+  const db = database.collection("users");
+  const [valueOne, setValueOne] = useState(30);
+  const [valueTwo, setValueTwo] = useState(30);
+
+  if (activeUser != null) {
+    var userEmail = activeUser.email;
+    var userDoc = db.doc(activeUser.email);
+  }
+
+  const handleSliderChangeOne = (event, newValue) => {
+    setValueOne(newValue);
+  };
+
+  const handleSliderChangeTwo = (event, newValue) => {
+    setValueTwo(newValue);
+  };
+
+  const handleSave = () => {
+    if (!activeUser) {
+      // middleware to check auth is success before call an api
+      auth.signInWithPopup(provider).then(() => {
+        alert("Please click save button again after logged in (to be enhance)");
+        console.log("middleware to check auth is success before call an api");
+      });
+    } else {
+      console.log(valueOne, valueTwo, userEmail);
+
+      userDoc.get().then((doc) => {
+        if (doc.exists) {
+          db.doc(userEmail)
+            .update({
+              product: {
+                ingredient1: valueOne,
+                ingredient2: valueTwo,
+              },
+            })
+            .then(() => {
+              alert("Document successfully updated!");
+              console.log("Document successfully updated!");
+            });
+        } else {
+          db.doc(userEmail)
+            .set({
+              userEmail: userEmail,
+              product: {
+                productId: "mockProduct 1",
+                ingredient1: valueOne,
+                ingredient2: valueTwo,
+              },
+            })
+            .then(() => {
+              alert("Document successfully created!");
+              console.log("Document successfully created!");
+            });
+        }
+      });
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -75,7 +150,8 @@ export default function CustomizationEngine() {
               <PrettoSlider
                 valueLabelDisplay="auto"
                 aria-label="pretto slider"
-                defaultValue={20}
+                value={valueOne}
+                onChange={handleSliderChangeOne}
               />
             </Grid>
           </Grid>
@@ -87,10 +163,37 @@ export default function CustomizationEngine() {
               <PrettoSlider
                 valueLabelDisplay="auto"
                 aria-label="pretto slider"
-                defaultValue={20}
+                value={valueTwo}
+                onChange={handleSliderChangeTwo}
               />
             </Grid>
           </Grid>
+          <Box pt={2}>
+            <Grid container>
+              <Grid container item justify="flex-start" xs={6}>
+                <Button variant="outlined" size="small">
+                  Reset
+                </Button>
+              </Grid>
+              <Grid container item justify="flex-end" xs={6}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  className={classes.button}
+                  onClick={handleSave}
+                >
+                  Save
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  className={classes.button}
+                >
+                  Buy
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
         </Paper>
       </Container>
     </div>

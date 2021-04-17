@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import CustomizationEngine from "../components/CustomizationEngine";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Todos from "../components/todos";
+// import Todos from "../components/Todos";
 
 class Homepage extends Component {
   state = {};
+
   render() {
     return (
       <>
         <Header />
         <CustomizationEngine />
-        <Todos />
+        {/* <Todos /> */}
         <Footer />
       </>
     );
