@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Slider,
@@ -10,7 +10,6 @@ import {
   Box,
 } from "@material-ui/core";
 import { database, firebaseApp } from "../config";
-import { AuthContext } from "../auth";
 import { auth, provider } from "../config";
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +73,6 @@ const PrettoSlider = withStyles({
 
 export default function CustomizationEngine() {
   const classes = useStyles();
-  const currentUser = useContext(AuthContext);
   const activeUser = firebaseApp.auth().currentUser;
   const db = database.collection("users");
   const [valueOne, setValueOne] = useState(30);
