@@ -14,14 +14,7 @@ import { auth, provider } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: "flex",
     flexGrow: 1,
-    // flexWrap: "wrap",
-    // "& > *": {
-    // margin: theme.spacing(5),
-    //   width: theme.spacing(40),
-    //   height: theme.spacing(40),
-    // },
   },
   paper: {
     padding: theme.spacing(2),
