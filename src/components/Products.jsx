@@ -68,6 +68,9 @@ function Products() {
                       variant="outlined"
                       size="small"
                       className={classes.button}
+                      onClick={() => {
+                        alert("will do it later na");
+                      }}
                     >
                       View more info
                     </Button>

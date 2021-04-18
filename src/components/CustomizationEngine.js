@@ -84,6 +84,11 @@ export default function CustomizationEngine() {
     setValueTwo(newValue);
   };
 
+  const handleReset = () => {
+    setValueOne(30);
+    setValueTwo(30);
+  };
+
   const handleSave = () => {
     if (!activeUser) {
       // middleware to check auth is success before call an api
@@ -162,7 +167,7 @@ export default function CustomizationEngine() {
           <Box pt={2}>
             <Grid container>
               <Grid container item justify="flex-start" xs={6}>
-                <Button variant="outlined" size="small">
+                <Button variant="outlined" size="small" onClick={handleReset}>
                   Reset
                 </Button>
               </Grid>
