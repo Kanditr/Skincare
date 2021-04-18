@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { database } from "../config";
 import {
   Grid,
-  Card,
   Typography,
-  CardContent,
   Button,
   Container,
   makeStyles,
+  Paper,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    // textAlign: "center",
     color: theme.palette.text.secondary,
     maxWidth: 960,
-    marginTop: theme.spacing(5),
+    // marginLeft: theme.spacing(2),
     margin: "auto",
   },
 
@@ -52,12 +51,12 @@ function Products() {
 
   return (
     <div className={classes.root}>
-      <Grid>
+      <Grid container xs={12}>
         {products.map((product) => (
-          <Container key={product.id} className={classes.container}>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
+          <Container className={classes.container}>
+            <Paper className={classes.paper}>
+              <Grid key={product.id} xs={12}>
+                <Grid item xs={12}>
                   <Typography gutterBottom variant="inherit" component="h4">
                     {product.data.productName}
                   </Typography>
@@ -73,9 +72,9 @@ function Products() {
                       View more info
                     </Button>
                   </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
           </Container>
         ))}
       </Grid>
